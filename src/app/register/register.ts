@@ -13,9 +13,10 @@ import { AuthService } from '../auth-service';
 })
 export class Register {
 authService = inject(AuthService);
+private nextId = 1;
 
   credentials: UserCredentials = {
-    userId: 1,
+    userId: this.nextId++,
     emailId: '',
     fullName: '',
     password: ''
@@ -26,7 +27,7 @@ authService = inject(AuthService);
   onSubmit() {
     this.submitted = true;
     this.authService.register(this.credentials).pipe().subscribe((res) => {
-      console.log('response----->', res)
+      console.log('User created successully', res)
     })
   }
 }

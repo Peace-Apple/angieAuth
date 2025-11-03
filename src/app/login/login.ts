@@ -24,7 +24,7 @@ export class Login {
   onSubmit() {
     this.submitted = true;
     this.authService.login(this.credentials).pipe().subscribe((res) => {
-      console.log('response----->', res)
+      console.log('Looged In----->', res)
     })
   }
 }
