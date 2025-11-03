@@ -4,18 +4,20 @@ import { UserCredentials } from '../userInterface';
 import { AuthService } from '../auth-service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   imports: [
     FormsModule
   ],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './register.html',
+  styleUrl: './register.scss',
 })
-export class Login {
-  authService = inject(AuthService);
+export class Register {
+authService = inject(AuthService);
 
   credentials: UserCredentials = {
+    userId: 1,
     emailId: '',
+    fullName: '',
     password: ''
   };
 
@@ -23,7 +25,7 @@ export class Login {
 
   onSubmit() {
     this.submitted = true;
-    this.authService.login(this.credentials).pipe().subscribe((res) => {
+    this.authService.register(this.credentials).pipe().subscribe((res) => {
       console.log('response----->', res)
     })
   }
