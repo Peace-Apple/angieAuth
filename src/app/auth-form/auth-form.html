@@ -2,8 +2,8 @@
     <div class="col-md-3 mx-auto">
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
             <fieldset>
-                <legend class="text-center">{{ isLoginMode ? 'LOGIN' : 'REGISTER' }}</legend>
-                @if (!isLoginMode) {
+                <legend class="text-center">{{ isLoginMode() ? 'LOGIN' : 'REGISTER' }}</legend>
+                @if (!isLoginMode()) {
                 <div class="mb-3">
                     <label for="fullname" class="form-label">Full Name</label>
                     <input 
@@ -48,12 +48,12 @@
                     <button 
                         type="submit"
                         class="btn btn-primary"
-                    >{{ isLoginMode ? 'Login' : 'Register' }}</button>
+                    >{{ isLoginMode() ? 'Login' : 'Register' }}</button>
                 </div>
                 <div class="col">
                     <span class="float-end">
-                        <a routerLink="/{{ isLoginMode ? 'register' : 'login' }}">
-                            {{ isLoginMode ? 'Register' : 'Login' }}
+                        <a routerLink="/{{ isLoginMode() ? 'register' : 'login' }}">
+                            {{ isLoginMode() ? 'Register' : 'Login' }}
                         </a>
                     </span>
                 </div>

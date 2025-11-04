@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, output, booleanAttribute } from '@angular/core';
 import { UserCredentials } from '../userInterface';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -13,8 +13,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './auth-form.scss',
 })
 export class AuthForm {
-  @Input() isLoginMode: boolean = true;
-  @Output() formSubmit = new EventEmitter<any>();
+  isLoginMode = input(true, { transform: booleanAttribute });
+  formSubmit = output<any>();
   
   submitted = false;
   
