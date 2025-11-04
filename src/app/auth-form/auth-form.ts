@@ -1,11 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { UserCredentials } from '../userInterface';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
   imports: [
-    FormsModule
+    FormsModule,
+    RouterLink,
   ],
   templateUrl: './auth-form.html',
   styleUrl: './auth-form.scss',

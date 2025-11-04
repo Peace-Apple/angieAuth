@@ -1,13 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../auth-service';
 import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
 import { AuthForm } from '../auth-form/auth-form';
 
 @Component({
   selector: 'app-register',
   imports: [
-    RouterLink,
     AuthForm
   ],
   templateUrl: './register.html',
