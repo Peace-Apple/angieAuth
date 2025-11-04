@@ -1,37 +1,26 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { UserCredentials } from '../userInterface';
 import { AuthService } from '../auth-service';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { AuthForm } from '../auth-form/auth-form';
 
 @Component({
   selector: 'app-register',
   imports: [
-    FormsModule,
-    RouterLink
+    RouterLink,
+    AuthForm
   ],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
 export class Register {
-authService = inject(AuthService);
-private router = inject(Router);
+  authService = inject(AuthService);
+  private router = inject(Router);
+  private nextId = 1;
 
-private nextId = 1;
-
-  credentials: UserCredentials = {
-    userId: this.nextId++,
-    emailId: '',
-    fullName: '',
-    password: ''
-  };
-
-  submitted = false;
-
-  onSubmit() {
-    this.submitted = true;
-    this.authService.register(this.credentials).pipe().subscribe((res) => {
+  handleRegister(formData: any) {
+    formData.userId = this.nextId++;
+    this.authService.register(formData).pipe().subscribe((res) => {
       this.router.navigateByUrl('/login');
     })
   }

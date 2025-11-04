@@ -26,7 +26,7 @@ export class AuthService {
   register(credentials: any): Observable<any> {
     return this.http.post(`https://api.freeprojectapi.com/api/UserApp/CreateNewUser`, credentials).pipe(
       tap((response: any) => {
-        console.log('Registration successful', response.data)
+        console.log('Registration successful', response)
       })
     );
   }
