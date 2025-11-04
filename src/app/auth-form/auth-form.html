@@ -1,60 +1,64 @@
 <div class="container d-flex align-items-center justify-content-center min-vh-100">
-    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-        <fieldset>
-            <legend class="text-center">{{ isLoginMode ? 'LOGIN' : 'REGISTER' }}</legend>
-            @if (!isLoginMode) {
+    <div class="col-md-3 mx-auto">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <fieldset>
+                <legend class="text-center">{{ isLoginMode ? 'LOGIN' : 'REGISTER' }}</legend>
+                @if (!isLoginMode) {
+                <div class="mb-3">
+                    <label for="fullname" class="form-label">Full Name</label>
+                    <input 
+                        type="text" 
+                        class="form-control"
+                        placeholder="Enter your full name" 
+                        id="fullname" 
+                        [(ngModel)]="credentials.fullName" 
+                        name="fullname" 
+                        required
+                    >
+                </div>
+            }
+
             <div class="mb-3">
-                <label for="fullname" class="form-label">Full Name</label>
+                <label for="emailId" class="form-label">Email</label>
                 <input 
-                    type="text" 
+                    type="email" 
                     class="form-control"
-                    placeholder="Enter your full name" 
-                    id="fullname" 
-                    [(ngModel)]="credentials.fullName" 
-                    name="fullname" 
+                    placeholder="Enter your email" 
+                    id="emailId" 
+                    [(ngModel)]="credentials.emailId" 
+                    name="emailId" 
                     required
                 >
             </div>
-        }
-
-        <div class="mb-3">
-            <label for="emailId" class="form-label">Email</label>
-            <input 
-                type="email" 
-                class="form-control"
-                placeholder="Enter your email" 
-                id="emailId" 
-                [(ngModel)]="credentials.emailId" 
-                name="emailId" 
-                required
-            >
-        </div>
-        
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input 
-                type="password"
-                class="form-control"
-                placeholder="**********"
-                id="password"
-                [(ngModel)]="credentials.password"
-                name="password"
-                required
-            >
-        </div>
-        <div class="row">
-            <div class="col">
-                <button 
-                    type="submit"
-                    class="btn btn-primary"
-                >{{ isLoginMode ? 'Login' : 'Register' }}</button>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                    type="password"
+                    class="form-control"
+                    placeholder="**********"
+                    id="password"
+                    [(ngModel)]="credentials.password"
+                    name="password"
+                    required
+                >
             </div>
-            <div class="col float-end">
-                <a routerLink="/{{ isLoginMode ? 'register' : 'login' }}">
-                    {{ isLoginMode ? 'Register' : 'Login' }}
-                </a>
+            <div class="row">
+                <div class="col">
+                    <button 
+                        type="submit"
+                        class="btn btn-primary"
+                    >{{ isLoginMode ? 'Login' : 'Register' }}</button>
+                </div>
+                <div class="col">
+                    <span class="float-end">
+                        <a routerLink="/{{ isLoginMode ? 'register' : 'login' }}">
+                            {{ isLoginMode ? 'Register' : 'Login' }}
+                        </a>
+                    </span>
+                </div>
             </div>
-        </div>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>
