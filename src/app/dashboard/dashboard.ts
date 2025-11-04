@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../auth-service';
 import { Router } from '@angular/router';
 
@@ -7,11 +7,21 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
   authService = inject(AuthService);
   private router = inject(Router);
+
+  ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.authService.getUsers().subscribe((response)=> {
+      console.log('users here----->', response)
+    })
+  }
   
- logout() {
+  logout() {
     this.authService.logout();
     this.router.navigate(['/login'], { replaceUrl: true });
   }

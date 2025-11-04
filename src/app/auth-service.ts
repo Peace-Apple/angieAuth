@@ -17,7 +17,7 @@ export class AuthService {
   login(credentials: any): Observable<any> {
     return this.http.post(`https://api.freeprojectapi.com/api/UserApp/login`, credentials).pipe(
       tap((response: any) => {
-        localStorage.setItem('authToken', JSON.stringify(response.token));
+        localStorage.setItem('authToken', response.data.token);
         this.isAuthenticatedSubject.next(true);
       })
     );
@@ -26,8 +26,7 @@ export class AuthService {
   register(credentials: any): Observable<any> {
     return this.http.post(`https://api.freeprojectapi.com/api/UserApp/CreateNewUser`, credentials).pipe(
       tap((response: any) => {
-        localStorage.setItem('authToken', JSON.stringify(response.data));
-        this.isAuthenticatedSubject.next(true);
+        console.log('Registration successful', response.data)
       })
     );
   }
@@ -35,7 +34,7 @@ export class AuthService {
   getUsers(): Observable<any> {
     return this.http.get(`https://api.freeprojectapi.com/api/UserApp/GetAllUsers`).pipe(
       tap((response: any) => {
-        console.log('users------', response)
+        console.log('Users------', response)
       })
     );
   }
