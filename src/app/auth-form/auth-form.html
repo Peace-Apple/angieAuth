@@ -1,0 +1,42 @@
+<div>
+    <span>{{ isLoginMode ? 'LOGIN' : 'REGISTER' }}</span>
+    <div>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            @if (!isLoginMode) {
+                <div>
+                    <input 
+                        type="text" 
+                        placeholder="Enter your full name" 
+                        id="fullname" 
+                        [(ngModel)]="credentials.fullName" 
+                        name="fullname" 
+                        required
+                    >
+                </div>
+            }
+
+            <div>
+                <input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    id="emailId" 
+                    [(ngModel)]="credentials.emailId" 
+                    name="emailId" 
+                    required
+                >
+            </div>
+            
+            <div>
+                <input 
+                    type="password" 
+                    placeholder="**********" 
+                    id="password" 
+                    [(ngModel)]="credentials.password" 
+                    name="password" 
+                    required
+                >
+            </div>
+            <button type="submit">{{ isLoginMode ? 'Login' : 'Register' }}</button>
+        </form>
+    </div>
+</div>
