@@ -1,25 +1,2 @@
-<div>
-    <span>LOGIN</span>
-    <div>
-        <form (ngSubmit)="onSubmit()">
-            <input 
-                type="email" 
-                placeholder="Enter your email" 
-                id="email" 
-                [(ngModel)]="credentials.emailId" 
-                name="email" 
-                required
-            >
-            <input 
-                type="password" 
-                placeholder="**********" 
-                id="password" 
-                [(ngModel)]="credentials.password" 
-                name="password" 
-                required
-            >
-            <button type="submit">Login</button>
-        </form>
-    </div>
-    <a routerLink="/register">Register</a>
-</div>
+<app-auth-form [isLoginMode]="true" (formSubmit)="handleLogin($event)"></app-auth-form>
+<a routerLink="/register">Register</a>
