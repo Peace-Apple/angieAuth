@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { LocalStorageService } from './local-storage-service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  localStorageService = inject(LocalStorageService);
 
   constructor(private http: HttpClient) {
     this.checkAuthenticationStatus();
@@ -17,7 +19,7 @@ export class AuthService {
   login(credentials: any): Observable<any> {
     return this.http.post(`https://api.freeprojectapi.com/api/UserApp/login`, credentials).pipe(
       tap((response: any) => {
-        localStorage.setItem('authToken', response.data.token);
+        this.localStorageService.set('authToken', response.data.token);
         this.isAuthenticatedSubject.next(true);
       })
     );
@@ -40,12 +42,12 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
+    this.localStorageService.remove('authToken');
     this.isAuthenticatedSubject.next(false);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return this.localStorageService.get('authToken');
   }
 
   private checkAuthenticationStatus(): void {
