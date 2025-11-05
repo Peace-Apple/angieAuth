@@ -18,8 +18,14 @@ export class Register {
 
   handleRegister(formData: any) {
     formData.userId = this.nextId++;
-    this.authService.register(formData).pipe().subscribe((res) => {
-      this.router.navigateByUrl('/login');
+    this.authService.register(formData).pipe().subscribe({
+      next: (res) => {
+        console.log('Registration successful', res)
+        this.router.navigateByUrl('/login');
+      },
+      error: (error) => {
+        console.log('Error: ', error)
+      }
     })
   }
 }

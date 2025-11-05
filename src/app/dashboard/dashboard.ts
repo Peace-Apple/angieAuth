@@ -16,8 +16,13 @@ export class Dashboard implements OnInit {
   }
 
   getUsers() {
-    this.authService.getUsers().subscribe((response)=> {
-      console.log('users here----->', response)
+    this.authService.getUsers().subscribe({
+      next: (response) => {
+        console.log('Users here----->', response)
+      },
+      error: (error) => {
+        console.log('Error: ', error)
+      }
     })
   }
   

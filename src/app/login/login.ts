@@ -16,8 +16,13 @@ export class Login {
   private router = inject(Router);
 
   handleLogin(formData: any) {
-    this.authService.login(formData).pipe().subscribe((res) => {
-      this.router.navigateByUrl('/dashboard');
+    this.authService.login(formData).pipe().subscribe({
+      next: () => {
+        this.router.navigateByUrl('/dashboard');
+      },
+      error: (error) => {
+        console.log('Error: ', error)
+      }
     })
   }
 }
