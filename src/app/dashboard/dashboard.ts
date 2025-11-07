@@ -12,11 +12,11 @@ export class Dashboard implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUser();
   }
 
-  getUsers() {
-    this.authService.getUsers().subscribe({
+  getUser() {
+    this.authService.getUser().subscribe({
       next: (response) => {
         console.log('Users here----->', response)
       },

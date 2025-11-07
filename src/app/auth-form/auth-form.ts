@@ -19,7 +19,7 @@ export class AuthForm {
   submitted = false;
   
   credentials: UserCredentials = {
-    emailId: '',
+    email: '',
     fullName: '',
     password: ''
   };

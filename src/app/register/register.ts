@@ -14,10 +14,8 @@ import { AuthForm } from '../auth-form/auth-form';
 export class Register {
   authService = inject(AuthService);
   private router = inject(Router);
-  private nextId = 1;
 
   handleRegister(formData: any) {
-    formData.userId = this.nextId++;
     this.authService.register(formData).pipe().subscribe({
       next: (res) => {
         console.log('Registration successful', res)
