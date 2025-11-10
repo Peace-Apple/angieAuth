@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../auth-service';
 import { Router } from "@angular/router";
 import { AuthForm } from '../auth-form/auth-form';
@@ -11,9 +11,16 @@ import { AuthForm } from '../auth-form/auth-form';
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
-export class Login {
+export class Login implements OnInit {
   authService = inject(AuthService);
   private router = inject(Router);
+
+  ngOnInit(): void {
+    // Redirect if already logged in
+    if (this.authService.isLoggedIn()) {
+    this.router.navigate(['/dashboard']);
+    }
+  }
 
   handleLogin(formData: any) {
     this.authService.login(formData).pipe().subscribe({

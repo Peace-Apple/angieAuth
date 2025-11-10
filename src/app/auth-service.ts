@@ -56,4 +56,12 @@ export class AuthService {
     const token = this.getToken();
     this.isAuthenticatedSubject.next(!!token);
   }
+
+  get currentUserValue() {
+    return this.isAuthenticatedSubject.value;
+  }
+
+  isLoggedIn(): boolean {
+      return !!this.currentUserValue;
+  }
 }
